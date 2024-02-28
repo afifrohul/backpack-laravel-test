@@ -46,6 +46,7 @@ class ShortlinkCrudController extends CrudController
             'name' => 'code',
             'label' => 'Alias',
             'prefix' => env('APP_URL').'/',
+            'type'=> 'url'
 
         ]);
 

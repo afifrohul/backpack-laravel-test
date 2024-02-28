@@ -15,7 +15,7 @@ use App\Http\Controllers\RedirectController;
 */
 
 Route::get('/', function () {
-    return redirect('/admin');
+    return redirect('/login');
 });
 
 Route::get('/{code}', [RedirectController::class, 'redirectLink']);
