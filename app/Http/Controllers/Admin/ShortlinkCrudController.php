@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ShortlinkRequest;
+// use Illuminate\Support\Facades\Auth;
+use Auth;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -39,7 +41,20 @@ class ShortlinkCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column([
+            'name' => 'code',
+            'label' => 'Alias',
+            'prefix' => 's.hmifunej.id/',
+            // 'type' => 'url'
+
+        ]);
+
+        CRUD::column([
+            'name' => 'link',
+            'label' => 'Link',
+            'type' => 'url'
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,7 +71,28 @@ class ShortlinkCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ShortlinkRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
+
+        CRUD::field([
+            'name' => 'code',
+            'label' => 'Alias'
+        ]);
+        CRUD::field([
+            'name' => 'link',
+            'label' => 'Link',
+            'type' => 'url'
+        ]);
+
+        CRUD::field([
+            'name' => 'user_id',
+            'label' => 'User',
+            'type' => 'hidden',
+            'value' => Auth::guard('backpack')->user()->id
+            // 'type' => 'select',
+            // 'options'   => (function ($query) {
+            //     return $query->orderBy('name', 'ASC')->where('id', Auth::guard('backpack')->user()->id)->get();
+            // }),
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax:

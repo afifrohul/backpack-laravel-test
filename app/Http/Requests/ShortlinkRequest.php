@@ -26,6 +26,8 @@ class ShortlinkRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'code' => 'required|min:4|max:100|unique:shortlinks',
+            'link' => 'required|active_url'
         ];
     }
 
