@@ -45,8 +45,7 @@ class ShortlinkCrudController extends CrudController
         CRUD::column([
             'name' => 'code',
             'label' => 'Alias',
-            'prefix' => 's.hmifunej.id/',
-            // 'type' => 'url'
+            'prefix' => env('APP_URL').'/',
 
         ]);
 
