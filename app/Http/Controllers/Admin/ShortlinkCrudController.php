@@ -43,6 +43,13 @@ class ShortlinkCrudController extends CrudController
         if ((\Auth::user()->hasRole('divisi')) || (\Auth::user()->hasRole('mahasiswa')) ) {
             CRUD::addClause('where', 'user_id', '=', Auth::guard('web')->user()->id);
         }
+
+        $count = \App\Models\Shortlink::where('user_id', \Auth::user()->id)->count();
+
+        if (\Auth::user()->hasRole('mahasiswa') && $count >= 5) {
+            $this->crud->denyAccess(['create']);
+        }
+
     }
 
     /**
@@ -76,6 +83,8 @@ class ShortlinkCrudController extends CrudController
             'label' => 'User',
             'searchLogic' => false
         ]);
+
+        CRUD::removeButton('create');
 
         /**
          * Columns can be defined using the fluent syntax:

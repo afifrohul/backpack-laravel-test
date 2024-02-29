@@ -8,6 +8,11 @@
     <x-backpack::menu-dropdown-item title="Roles" icon="la la-group" :link="backpack_url('role')" />
     <x-backpack::menu-dropdown-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" />
 </x-backpack::menu-dropdown>
-{{-- <x-backpack::menu-item title="Users" icon="la la-user" :link="backpack_url('user')" /> --}}
+
 @endif
-<x-backpack::menu-item title="Shortlinks" icon="la la-link" :link="backpack_url('shortlink')" />
+<x-backpack::menu-dropdown title="Shortlink" icon="la la-link">
+    <x-backpack::menu-dropdown-header title="Shortlink" />
+    <x-backpack::menu-dropdown-item title="List" icon="la la-list" :link="backpack_url('shortlink')" />
+    <x-backpack::menu-dropdown-item title="Create New" icon="la la-plus" :link="backpack_url('shortlink/create')" />
+</x-backpack::menu-dropdown>
+{{-- <x-backpack::menu-item title="Shortlinks" icon="la la-link" :link="backpack_url('shortlink')" /> --}}
