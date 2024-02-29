@@ -31,6 +31,19 @@ class ShortlinkCrudController extends CrudController
         CRUD::setModel(\App\Models\Shortlink::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/shortlink');
         CRUD::setEntityNameStrings('shortlink', 'shortlinks');
+
+        
+        if ((\Auth::user()->hasRole('superadmin'))) {
+            $this->crud->denyAccess(['update']);
+        }
+        
+        if ((\Auth::user()->hasRole('adminhmif'))) {
+            CRUD::addClause('where', 'user_id', '<=', 7);
+        }
+
+        if ((\Auth::user()->hasRole('divisi')) || (\Auth::user()->hasRole('mahaiswa')) ) {
+            CRUD::addClause('where', 'user_id', '=', Auth::guard('web')->user()->id);
+        }
     }
 
     /**
@@ -54,6 +67,11 @@ class ShortlinkCrudController extends CrudController
             'name' => 'link',
             'label' => 'Link',
             'type' => 'url'
+        ]);
+
+        CRUD::column([
+            'name' => 'user_id',
+            'label' => 'User',
         ]);
 
         /**
