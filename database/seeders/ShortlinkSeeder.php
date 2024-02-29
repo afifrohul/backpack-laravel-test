@@ -48,6 +48,36 @@ class ShortlinkSeeder extends Seeder
         $shortlink->user_id = 7;
         $shortlink->save();
 
+        $shortlink = new \App\Models\Shortlink;
+        $shortlink->code = 'portfolio';
+        $shortlink->link = 'https://hmifunej.id/';
+        $shortlink->user_id = 8;
+        $shortlink->save();
+
+        $shortlink = new \App\Models\Shortlink;
+        $shortlink->code = 'linkedin';
+        $shortlink->link = 'https://hmifunej.id/';
+        $shortlink->user_id = 8;
+        $shortlink->save();
+
+        $shortlink = new \App\Models\Shortlink;
+        $shortlink->code = 'instagram';
+        $shortlink->link = 'https://hmifunej.id/';
+        $shortlink->user_id = 8;
+        $shortlink->save();
+
+        $shortlink = new \App\Models\Shortlink;
+        $shortlink->code = 'github';
+        $shortlink->link = 'https://hmifunej.id/';
+        $shortlink->user_id = 8;
+        $shortlink->save();
+
+        $shortlink = new \App\Models\Shortlink;
+        $shortlink->code = 'personal-web';
+        $shortlink->link = 'https://hmifunej.id/';
+        $shortlink->user_id = 8;
+        $shortlink->save();
+
         
     }
 }

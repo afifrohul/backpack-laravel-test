@@ -102,5 +102,17 @@ class UserSeeder extends Seeder
           ]);
         event(new Registered($mediatek));
         $mediatek->assignRole('divisi');
+        
+        $mahasiswa = User::create([
+            'name' => 'Afif Rohul Abrori',
+            'email' => '212410103044@mail.unej.ac.id',
+            'email_verified_at' => now(),
+            'password' => bcrypt('afifafif'),
+            'remember_token' => \Str::random(60),
+            'created_at' => now(),
+            'updated_at' => now()
+          ]);
+        event(new Registered($mahasiswa));
+        $mahasiswa->assignRole('mahasiswa');
     }
 }

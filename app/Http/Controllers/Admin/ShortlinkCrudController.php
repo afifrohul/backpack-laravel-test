@@ -31,7 +31,6 @@ class ShortlinkCrudController extends CrudController
         CRUD::setModel(\App\Models\Shortlink::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/shortlink');
         CRUD::setEntityNameStrings('shortlink', 'shortlinks');
-
         
         if ((\Auth::user()->hasRole('superadmin'))) {
             $this->crud->denyAccess(['update']);
@@ -41,7 +40,7 @@ class ShortlinkCrudController extends CrudController
             CRUD::addClause('where', 'user_id', '<=', 7);
         }
 
-        if ((\Auth::user()->hasRole('divisi')) || (\Auth::user()->hasRole('mahaiswa')) ) {
+        if ((\Auth::user()->hasRole('divisi')) || (\Auth::user()->hasRole('mahasiswa')) ) {
             CRUD::addClause('where', 'user_id', '=', Auth::guard('web')->user()->id);
         }
     }
@@ -59,7 +58,10 @@ class ShortlinkCrudController extends CrudController
             'name' => 'code',
             'label' => 'Alias',
             'prefix' => env('APP_URL').'/',
-            'type'=> 'url'
+            'type'=> 'url',
+            'searchLogic' => function ($query, $column, $searchTerm) {
+                $query->orWhere('code', 'like', '%'.$searchTerm.'%');
+            }
 
         ]);
 
@@ -72,6 +74,7 @@ class ShortlinkCrudController extends CrudController
         CRUD::column([
             'name' => 'user_id',
             'label' => 'User',
+            'searchLogic' => false
         ]);
 
         /**
