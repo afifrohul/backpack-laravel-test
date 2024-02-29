@@ -87,7 +87,7 @@ class ShortlinkCrudController extends CrudController
             'name' => 'user_id',
             'label' => 'User',
             'type' => 'hidden',
-            'value' => Auth::guard('backpack')->user()->id
+            'value' => Auth::guard('web')->user()->id
             // 'type' => 'select',
             // 'options'   => (function ($query) {
             //     return $query->orderBy('name', 'ASC')->where('id', Auth::guard('backpack')->user()->id)->get();

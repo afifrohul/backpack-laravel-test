@@ -22,7 +22,7 @@
       'wrapper' => ['class' => 'col-sm-6 col-md-12'], // optional
       // 'class'   => 'card bg-dark text-white', // optional
       'content'    => [
-        'header' => 'Welcome! ' . \Auth::guard('backpack')->user()->name,
+        'header' => 'Welcome! ' . \Auth::guard('web')->user()->name,
           'body'   => 'Have a nice day! ✨. Thank you for using the HMIF SHORTLINK service. Keep supporting us to become a better organization. Feedback and suggestions can be submitted through our social media @hmifunej.',
           ]
         ];

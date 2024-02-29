@@ -16,6 +16,9 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    Route::crud('user', 'UserCrudController');
+    Route::middleware(['role:superadmin'])->group(function () {
+        Route::crud('user', 'UserCrudController');
+    });
+    
     Route::crud('shortlink', 'ShortlinkCrudController');
 }); // this should be the absolute last line of this file
